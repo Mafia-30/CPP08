@@ -6,7 +6,7 @@
 /*   By: ymafaman <ymafaman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:28:56 by ymafaman          #+#    #+#             */
-/*   Updated: 2024/09/19 15:00:54 by ymafaman         ###   ########.fr       */
+/*   Updated: 2024/09/20 11:50:57 by ymafaman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,16 @@ Span::~Span()
 
 Span& Span::operator=( const Span& rhs )
 {
+    if (this == &rhs)
+    {
+        return *this;
+    }
+
     this->array = rhs.array;
     this->array.shrink_to_fit(); // only assigning a vector to an other saves the same capacity as before, thus we have to shrink it to fit the current size, then, reserve same capacity as right side vector.
     this->array.reserve(rhs.array.capacity());
+
+    return *this;
 }
 
 void    Span::addNumber( int num )
